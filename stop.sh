@@ -1,0 +1,1 @@
+ps aux | grep syslogs | awk '{printf "kill -9 %s\n", $2}' | bash
