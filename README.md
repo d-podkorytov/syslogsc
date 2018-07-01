@@ -85,32 +85,32 @@ it can be managed by strating ./supervisor
 
 # FAQ:
 
-Q1) Whatis the difference between syslogs and syslogs2
-A1) The syslogs2 is more complicated.
+# Q1) Whatis the difference between syslogs and syslogs2
+# A1) The syslogs2 is more complicated.
     It :
-    *) Reads and parse preambule of message, 
+    - Reads and parse preambule of message, 
        open log's file , related with it;
-    *) Remove preambule, write message to this file
+    - Remove preambule, write message to this file.
 
-    So all syslog messages will be distributed inside a set of syslogs files.
+    So, all syslog messages will be distributed inside a set of syslogs files.
     Each kind of preambule "<N>" will be inside it's own file.
   
     While more simple syslogs writes incoming messages as is, without any
     transformation.
 
-Q2) Can it be faster ?
-A2) Shure. The syslogs shuld be faster than syslogs2, it do not any transforms or parsing 
+# Q2) Can it be faster ?
+# A2) Shure. The syslogs shuld be faster than syslogs2, it do not any transforms or parsing 
     for message.
     The syslogs2 is reopen log file for each incoming message, and parse it for
     computation of log file name, but syslogs2 can works in parallel mode and
     it should compensate long log writing.
 
-Q3) Where it can be used ?
-A3) For education, for systems where needs robast and fault tolerance events
+# Q3) Where it can be used ?
+# A3) For education, for systems where needs robast and fault tolerance events
     logging and handling. 
     
-Q4) Can I use this syslog in the userspace ?
-A4) Yes you can, but for it needs to change port number, for example to
+# Q4) Can I use this syslog in the userspace ?
+# A4) Yes you can, but for it needs to change port number, for example to
     50514 and the file path in the defintion #define LOGMASK to "/home/user/var/log/%d-syslogs.log"
     inside file syslogs3.c
      
