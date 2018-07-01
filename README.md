@@ -129,8 +129,16 @@ it can be managed by strating ./supervisor
     but for it needs to change port number, for example to
     50514 and the file path in the defintion #define LOGMASK to "/home/user/var/log/%d-syslogs.log"
     inside file syslogs3.c
-# Q5) Is it safe ?
-# A5) No, like many UDP services working at low ports,
+
+# Q5) That is syslogs-safe ?
+# A5) It is user-space syslog daemon with supervisor and some restrictions 
+for number of incoming messages, after reach it, daemon starts another process and stops.
+It aslo have internal supervisor that keeps given number of listening
+processes.
+All workers is separate processes in user-space with non root permissions. 
+
+# Q6) Is it safe ?
+# A6) No, like many UDP services working at low ports,
  and like many C code with calls sprintf(...), but such challenges may me redused by using syslogs-safe version of this syslog daemon. 
   It handle ony limited count of incoming message then this worker stops.
   Others workers starts needed numbers of it copies in they supervisors.
