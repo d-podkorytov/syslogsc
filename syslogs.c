@@ -5,9 +5,9 @@
 #include <sys/socket.h>
 #include <unistd.h>
      
-#define BUFLEN 65536
-#define PORT   514
-    
+#define BUFLEN  65536
+#define PORT    514
+
 void err(char *s)
 {
         perror(s);

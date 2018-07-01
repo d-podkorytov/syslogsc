@@ -10,9 +10,9 @@
      
 #define BUFLEN 65536
 #define PORT   514
-
 #define SECONDS 10
-    
+#define  "/var/log/%d-syslogs.log"    
+
 void err(char *s)
 {
  perror(s);
@@ -40,7 +40,7 @@ route(int FS, const char * buf)
 {FILE * F;
  char name[255];
 
- sprintf(name,"/var/log/syslogs.%d.log",FS);
+ sprintf(name,LOGMASK,FS);
 
  F=fopen(name,"a");
 
