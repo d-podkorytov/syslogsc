@@ -24,6 +24,10 @@ syslogs-safe: syslogs-safe.c
 	gcc syslogs-safe.c -o syslogs-safe
 	strip syslogs-safe
 
+syslogs-safe-p: syslogs-safe-p.c
+	gcc syslogs-safe-p.c -o syslogs-safe-p
+	strip syslogs-safe-p
+
 start:
 	./syslogs > /var/log/syslogs.log
 

@@ -32,7 +32,7 @@ int main(int argc, const char * argv[])
     if ( sscanf(argv[1],"%d",&port)!=1 ) {port=PORT;}
 
     printf("time: %s\n",date);
-    printf("port: %s\n",port);
+    printf("port: %d\n",port);
      
     if ((s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))==-1) err("socket");
     
