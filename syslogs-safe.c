@@ -12,8 +12,8 @@
 #define PORT     20514
 #define SECONDS  10
 #define LOGMASK  "%s/%d-syslogs.log"
-#define LOGPATH  "/home/d/logs" 
-#define MESSAGES 2
+#define LOGPATH  "/home/user/logs" 
+#define MESSAGES 1000
 #define FILE_NAME_LEN 4096
 
 void err(char *s)
