@@ -11,7 +11,8 @@
 #define BUFLEN   65536
 #define PORT     20514
 #define SECONDS  10
-#define LOGMASK  "/var/log/%d-syslogs.log" 
+#define LOGMASK  "%s/%d-syslogs.log"
+#define LOGPATH  "/home/d/logs" 
 #define MESSAGES 2
 #define FILE_NAME_LEN 4096
 
@@ -27,13 +28,13 @@ void Check(int a)
 // time(&start);
 // fprintf(stderr,"Check %s",ctime(&start));
 
- fprintf(stderr,"Check \n");
- fflush (stderr);
+// fprintf(stderr,"Check \n");
+// fflush (stderr);
 
  signal(SIGALRM,(void *)Check);
  alarm(SECONDS);
 
- system("./run3.sh &");
+ system("./run-safe.sh &");
 
 }
 
@@ -43,9 +44,11 @@ route(int FS, const char * buf)
  char * name;
 
  name=alloca(FILE_NAME_LEN);
- sprintf(name,LOGMASK,FS);
+ sprintf(name,LOGMASK,LOGPATH,FS);
 
  F=fopen(name,"a");
+
+ fprintf(stderr,"logto %s ",name);
 
  if (F==0) fprintf(stderr," error \n");
   
@@ -58,8 +61,8 @@ void log(const char * buf)
 { char *b;
   int FS;
   
-  //b=(void *)malloc(65535);
-  b=(void *)alloca(BUFLEN);
+  b=(void *)malloc(65535);
+  //b=(void *)alloca(BUFLEN);
   
   if (sscanf(buf,"<%d>%s",&FS,b)==2) 
    {route(FS,index(buf,':')+1);}
@@ -68,7 +71,7 @@ void log(const char * buf)
     fprintf(stderr,"not routed msg '%s'\n",buf);
    }
  
- //free(b);  
+ free(b);  
 }
     
 int main(void)
@@ -79,7 +82,8 @@ int main(void)
     int i;
     
     fclose(stdin);
-
+    mkdir(LOGPATH);
+    
     signal(SIGALRM,(void *)Check);
     alarm(SECONDS);
 
@@ -102,6 +106,7 @@ int main(void)
     }
 
     close(s);
+    Check(1);
     return 0;
 }
     
