@@ -84,6 +84,16 @@ it can be managed by strating ./supervisor
    o) Test it 
    o) Stop old versions.
 
+# LIMITS AND DEFAULTS
+
+  The size of incoming message is constant with 64K value;
+  The number of parallel workers (pool size) is 8;
+  The default port is 514 for simple version and 20514 for syslogs-safe 
+  (it should start with non root permission). 
+  The limit of message for handle in alone syslogs-safe is 1000.
+  The supervisor watchdog period is 10 seconds in a single process,
+  For the pool of N prosesses it will be about 10/N in the whole. 
+
 # FAQ:
 
 # Q1) Whatis the difference between syslogs and syslogs2
@@ -115,4 +125,10 @@ it can be managed by strating ./supervisor
     but for it needs to change port number, for example to
     50514 and the file path in the defintion #define LOGMASK to "/home/user/var/log/%d-syslogs.log"
     inside file syslogs3.c
-     
+# Q5) Is it safe ?
+# A5) No, like many UDP services working at low ports, like many C code with calls
+# sprintf(...), but such risc may me redused by using syslogs-safe version of this syslog daemon. 
+  It handle ony limited count of incoming message then this worker stops.
+  Others workers starts needed numbers of it copies in they supervisors.
+  The number of limit for handled process is an issue of needed syslog's productivity and
+  safety.       
