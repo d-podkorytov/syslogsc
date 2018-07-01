@@ -55,11 +55,11 @@ or
 
 2) test client
 
-./syslogc 514 "Some Test Record"
+./syslogc 127.0.0.1:514 "Some Test Record"
 
 Or
 
-./syslogc 514 "Some First Record" "Second record"
+./syslogc 127.0.0.1:514 "Some First Record" "Second record"
 
 3) Start multyple instances of syslog:
 
