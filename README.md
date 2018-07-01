@@ -143,5 +143,9 @@ All workers is separate processes in user-space with non root permissions.
   It handle ony limited count of incoming message then this worker stops.
   Others workers starts needed numbers of it copies in they supervisors.
   The number of limit for handled process is an issue of needed syslog's productivity and
-  safety.
+  safety. Using Stack-Smashing Protector (old name is ProPolice) may reduce
+  some risks. 
+  SSP is a subsystem for checking stack safety.
+  From gcc-4.1-stage2, SSP was intergated to GCC.
+  Gentoo Linux and OpenBSD include SSP in the default GCC package.
        

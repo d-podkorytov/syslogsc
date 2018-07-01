@@ -13,7 +13,7 @@
 #define SECONDS  10
 #define LOGMASK  "%s/%d-syslogs.log"
 #define LOGPATH  "./logs" 
-#define MESSAGES 1000
+#define MESSAGES      1000
 #define FILE_NAME_LEN 4096
 
 void err(char *s)
@@ -23,7 +23,7 @@ void err(char *s)
 }
 
 void Check(int a)
-{time_t start;
+{//time_t start;
 
 // time(&start);
 // fprintf(stderr,"Check %s",ctime(&start));
@@ -43,17 +43,19 @@ route(int FS, const char * buf)
 {FILE * F;
  char * name;
 
- name=alloca(FILE_NAME_LEN);
+ //name=alloca(FILE_NAME_LEN);
+ name=malloc(FILE_NAME_LEN);
+ if (name==0) exit(1);
  sprintf(name,LOGMASK,LOGPATH,FS);
 
  F=fopen(name,"a");
 
- fprintf(stderr,"logto %s ",name);
+ //fprintf(stderr,"logto %s ",name);
 
  if (F==0) fprintf(stderr," error \n");
   
  fprintf(F,"%s",buf);
- //free(name);
+ free(name);
  fclose(F);
 }
 
@@ -61,9 +63,9 @@ void log(const char * buf)
 { char *b;
   int FS;
   
-  b=(void *)malloc(65535);
+  b=(void *)malloc(BUFLEN);
   //b=(void *)alloca(BUFLEN);
-  
+  if (b==0) exit(1);
   if (sscanf(buf,"<%d>%s",&FS,b)==2) 
    {route(FS,index(buf,':')+1);}
    else 
@@ -71,7 +73,7 @@ void log(const char * buf)
     fprintf(stderr,"not routed msg '%s'\n",buf);
    }
  
- free(b);  
+  free(b);  
 }
     
 int main(void)
