@@ -55,11 +55,11 @@ or
 
 2) test client
 
-./syslogc "Some Test Record"
+./syslogc 514 "Some Test Record"
 
 Or
 
-./syslogc "Some First Record" "Second record"
+./syslogc 514 "Some First Record" "Second record"
 
 3) Start multyple instances of syslog:
 
@@ -83,6 +83,10 @@ it can be managed by strating ./supervisor
    o) Start new workers by syslogs3 or syslogs
    o) Test it 
    o) Stop old versions.
+
+7) Start syslogs-safe pool in user-space
+   
+   ./syslogs-safe &
 
 # LIMITS AND DEFAULTS
 
@@ -148,4 +152,6 @@ All workers is separate processes in user-space with non root permissions.
   SSP is a subsystem for checking stack safety.
   From gcc-4.1-stage2, SSP was intergated to GCC.
   Gentoo Linux and OpenBSD include SSP in the default GCC package.
+
+# All comments are welcomed.
        
