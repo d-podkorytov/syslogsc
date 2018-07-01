@@ -1,7 +1,6 @@
 # syslogsc
-# syslogsc
 
-DESCRIPTION
+#DESCRIPTION
 
 It starts as a holiday project, the main principles to be:
 *) Simple (The size of source code of syslogs3.c is 2K byte and two tiny
@@ -39,11 +38,11 @@ The format of date and time in message of client syslogc is not RFC compatible,
 it is very simple for writing.
 It can be changed for needs of compatibility in the future.
  
-COMPILE
+#COMPILE
 
 make
 
-USING
+#USING
 
 1) Start single daemon:
 
@@ -84,7 +83,7 @@ it can be managed by strating ./supervisor
    *) Test it 
    *) Stop old versions
 
-FAQ:
+#FAQ:
 
 Q1) Whatis the difference between syslogs and syslogs2
 A1) The syslogs2 is more complicated.
@@ -100,8 +99,7 @@ A1) The syslogs2 is more complicated.
     transformation.
 
 Q2) Can it be faster ?
-A2) Shure. 
-    The syslogs shuld be faster than syslogs2, it do not any transforms or parsing 
+A2) Shure. The syslogs shuld be faster than syslogs2, it do not any transforms or parsing 
     for message.
     The syslogs2 is reopen log file for each incoming message, and parse it for
     computation of log file name, but syslogs2 can works in parallel mode and
@@ -111,4 +109,6 @@ Q3) Where it can be used ?
 A3) For education, for systems where needs robast and fault tolerance events
     logging and handling. 
     
-      
+Q4) Can I use this syslog in the userspace ?
+A4) Yes you can, but for it needs to change port number, for example to
+    50514 and the file path in the defintion #define LOGMASK to "/home/user/var/log/%d-syslogs.log"     

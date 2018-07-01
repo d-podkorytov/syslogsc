@@ -8,10 +8,10 @@
 #include <signal.h>
 #include <stdlib.h>
      
-#define BUFLEN 65536
-#define PORT   514
+#define BUFLEN  65536
+#define PORT    514
 #define SECONDS 10
-#define  "/var/log/%d-syslogs.log"    
+#define LOGMASK "/var/log/%d-syslogs.log" 
 
 void err(char *s)
 {
