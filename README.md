@@ -1,4 +1,4 @@
-# Syslogsc server and client
+# SYSLOGSC Server and Client
 
 ## DESCRIPTION
 
