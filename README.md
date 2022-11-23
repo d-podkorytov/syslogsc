@@ -1,6 +1,6 @@
-# syslogsc
+# Syslogsc server and client
 
-# DESCRIPTION
+## DESCRIPTION
 
 It starts as a holiday project, the main principles to be:
 1. Simple (The size of source code of syslogs3.c is 2K byte and two tiny
@@ -39,11 +39,11 @@ The format of date and time in message of client syslogc is not RFC compatible,
 it is very simple for writing.
 It can be changed for needs of compatibility in the future.
  
-# COMPILE
+## COMPILE
 
 make
 
-# USING
+## USING
 
 1) Start single daemon:
 
@@ -88,7 +88,7 @@ it can be managed by strating ./supervisor
    
    ./syslogs-safe &
 
-# LIMITS AND DEFAULTS
+## LIMITS AND DEFAULTS
 
   The size of incoming message is constant with 64K value;
 
@@ -102,10 +102,10 @@ it can be managed by strating ./supervisor
   The supervisor watchdog period is 10 seconds in a single process,
   for the pool of N prosesses it will be about 10/N in the whole. 
 
-# FAQ:
+## FAQ:
 
-# Q1) Whatis the difference between syslogs and syslogs2
-# A1) The syslogs2 is more complicated.
+## Q1) Whatis the difference between syslogs and syslogs2
+## A1) The syslogs2 is more complicated.
     It :
     - Reads and parse preambule of message, 
        open log's file , related with it;
@@ -117,32 +117,32 @@ it can be managed by strating ./supervisor
     While more simple syslogs writes incoming messages as is, without any
     transformation.
 
-# Q2) Can it be faster ?
-# A2) Shure. 
+## Q2) Can it be faster ?
+## A2) Shure. 
     The syslogs shuld be faster than syslogs2, it do not any transforms or parsing 
     for message.
     The syslogs2 is reopen log file for each incoming message, and parse it for
     computation of log file name, but syslogs2 can works in parallel mode and
     it should compensate long log writing.
 
-# Q3) Where it can be used ?
-# A3) For education, for systems where needs robast and fault tolerance events logging and handling. 
+## Q3) Where it can be used ?
+## A3) For education, for systems where needs robast and fault tolerance events logging and handling. 
     
-# Q4) Can I use this syslog in the userspace ?
-# A4) Yes you can, 
+## Q4) Can I use this syslog in the userspace ?
+## A4) Yes you can, 
     but for it needs to change port number, for example to
     50514 and the file path in the defintion #define LOGMASK to "/home/user/var/log/%d-syslogs.log"
     inside file syslogs3.c
 
-# Q5) That is syslogs-safe ?
-# A5) It is user-space syslog daemon with supervisor and some restrictions 
+## Q5) That is syslogs-safe ?
+## A5) It is user-space syslog daemon with supervisor and some restrictions 
 for number of incoming messages, after reach it, daemon starts another process and stops.
 It aslo have internal supervisor that keeps given number of listening
 processes.
 All workers is separate processes in user-space with non root permissions. 
 
-# Q6) Is it safe ?
-# A6) No, like many UDP services working at low ports,
+## Q6) Is it safe ?
+## A6) No, like many UDP services working at low ports,
  and like many C code with calls sprintf(...), but such challenges may me redused by using syslogs-safe version of this syslog daemon. 
   It handle ony limited count of incoming message then this worker stops.
   Others workers starts needed numbers of it copies in they supervisors.
@@ -153,5 +153,5 @@ All workers is separate processes in user-space with non root permissions.
   From gcc-4.1-stage2, SSP was intergated to GCC.
   Gentoo Linux and OpenBSD include SSP in the default GCC package.
 
-# All comments are welcomed.
+## All comments are welcomed.
        
